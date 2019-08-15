@@ -1,9 +1,6 @@
 package com.spo.springit.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +12,9 @@ import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
-@Data
+@RequiredArgsConstructor
+@Getter @Setter
+@ToString
 public class Link extends Auditable {
     @Id
     @GeneratedValue
@@ -28,6 +27,11 @@ public class Link extends Auditable {
     /// comments (has many)
     @OneToMany(mappedBy = "link")
     private List<Comment> comments = new ArrayList<>();
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
+
 
 }
 
