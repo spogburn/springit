@@ -12,7 +12,6 @@ import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Getter @Setter
 @ToString
 public class Link extends Auditable {
@@ -28,8 +27,17 @@ public class Link extends Auditable {
     @OneToMany(mappedBy = "link")
     private List<Comment> comments = new ArrayList<>();
 
+    public Link(String title, String url) {
+        this.title = title;
+        this.url = url;
+    }
+
     public void addComment(Comment comment) {
         comments.add(comment);
+    }
+
+    public String getTitle() {
+        return title;
     }
 
 
